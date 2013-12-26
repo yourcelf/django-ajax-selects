@@ -23,7 +23,7 @@
 
       function addKiller(repr, pk) {
         var killer_id = 'kill_' + pk + id,
-            killButton = '<span class="ui-icon ui-icon-trash" id="' + killer_id + '">X</span> ';
+            killButton = '<span class="ui-icon ui-icon-circle-minus kill" id="' + killer_id + '">X</span> ';
         if (repr) {
           $deck.empty();
           $deck.append('<div>' + killButton + repr + '</div>');
