@@ -1,6 +1,7 @@
-.results_on_deck .ui-icon-trash {
-  float: left;
-  cursor: pointer;
+.results_on_deck .kill {
+    display: inline-block;
+    vertical-align: middle;
+	cursor: pointer;
 }
 .results_on_deck {
   padding: 0.25em 0;
