@@ -5,7 +5,6 @@ from django.db import models
 from django.http import HttpResponse
 from django.utils import simplejson
 
-
 def ajax_lookup(request, channel):
 
     """ this view supplies results for foreign keys and many to many fields """
