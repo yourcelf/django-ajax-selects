@@ -23,16 +23,17 @@ as_default_help = 'Enter text to search.'
 
 
 def _media(self):
-    # unless AJAX_SELECT_BOOTSTRAP == False
-    # then load jquery and jquery ui + default css
-    # where needed
-    js = ('ajax_select/js/bootstrap.js', 'ajax_select/js/ajax_select.js')
-    try:
-        if not settings.AJAX_SELECT_BOOTSTRAP:
-            js = ('ajax_select/js/ajax_select.js',)
-    except AttributeError:
-        pass
-    return forms.Media(css={'all': ('ajax_select/css/ajax_select.css',)}, js=js)
+    # Default: load "bootstrap", which loads jquery ui from a CDN, and
+    # ajax_select javascript.
+    js = getattr(settings, "AJAX_SELECT_JS",
+            ('ajax_select/js/bootstrap.js', 'ajax_select/js/ajax_select.js'))
+    # Default: assume jquery UI theme came from the CDN with bootstrap, and
+    # include the ajax_select css.  If you want local jquery-ui, add its
+    # definition before ajax_select.css.
+    css = getattr(settings, "AJAX_SELECT_CSS", {
+        'all': ('ajax_select/css/ajax_select.css',)
+    })
+    return forms.Media(css=css, js=js)
 
 
 ###############################################################################
