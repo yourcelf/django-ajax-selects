@@ -1,7 +1,9 @@
 import json
+
 from django.http import HttpResponse
 from django.utils.encoding import force_text
 from ajax_select import registry
+
 
 def ajax_lookup(request, channel):
 

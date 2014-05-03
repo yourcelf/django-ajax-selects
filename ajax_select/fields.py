@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 import json
 from ajax_select.registry import registry
+
 from django import forms
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
@@ -12,12 +13,12 @@ from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 from django.utils.six import text_type
 from django.utils.translation import ugettext as _
+
 try:
     from django.urls import reverse
 except ImportError:
     # < django 1.10
     from django.core.urlresolvers import reverse
-
 
 as_default_help = 'Enter text to search.'
 
@@ -443,7 +444,10 @@ def make_plugin_options(lookup, channel_name, widget_plugin_options, initial):
 
     return {
         'plugin_options': mark_safe(json.dumps(po)),
-        'data_plugin_options': force_escape(json.dumps(po))
+        'data_plugin_options': force_escape(json.dumps(po)),
+        # continue to support any custom templates that still expect these
+        'lookup_url': po['source'],
+        'min_length': po['min_length']
     }
 
 
